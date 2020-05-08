@@ -1,3 +1,15 @@
-Flask==1.1.1
+Flask==1.0.2
+Flask-Cors==3.0.4
+Flask-WTF==0.14.3
 Werkzeug==0.15.5
 gunicorn==19.0.0
+psycopg2
+numpy==1.16.4
+Theano==1.0.3+21.g813faf6a9
+Keras==2.2.4
+Keras-Applications==1.0.6
+Keras-Preprocessing==1.0.5
+scikit-learn==0.22.2.post1
+scipy==1.1.0
+
+
