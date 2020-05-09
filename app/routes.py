@@ -6,6 +6,13 @@ from sklearn.neural_network import MLPRegressor
 from sklearn.preprocessing import StandardScaler
 import numpy as np
 
+import io
+import random
+from flask import Flask, Response, request
+from matplotlib.backends.backend_agg import FigureCanvasAgg
+from matplotlib.backends.backend_svg import FigureCanvasSVG
+from matplotlib.figure import Figure
+
 
 @app.route('/')
 
@@ -73,3 +80,18 @@ def calc():
   yref = y[0:N]
   yhat = NN.predict(X[0:N])
   return str(yhat[0:2])
+
+
+@app.route("/matplot-as-image-<int:num_x_points>.png")
+def plot_png(num_x_points=50):
+    """ renders the plot on the fly.
+    """
+    fig = Figure()
+    axis = fig.add_subplot(1, 1, 1)
+    x_points = range(num_x_points)
+    axis.plot(x_points, [random.randint(1, 30) for x in x_points])
+
+    output = io.BytesIO()
+    FigureCanvasAgg(fig).print_png(output)
+    return Response(output.getvalue(), mimetype="image/png")
+ 
