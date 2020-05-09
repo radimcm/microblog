@@ -11,7 +11,7 @@ import numpy as np
 
 @app.route('/index')
 def index():
-    user = {'username': 'Miguel'}
+    user = {'username': 'Dave'}
     posts = [
         {
             'author': {'username': 'Samuel'},
