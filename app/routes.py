@@ -8,31 +8,32 @@ import numpy as np
 
 
 @app.route('/')
+
 @app.route('/index')
 def index():
     user = {'username': 'Miguel'}
     posts = [
         {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
+            'author': {'username': 'Samuel'},
+            'body': 'Roblox is a fantastic game!'
         },
         {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
+            'author': {'username': 'Emma'},
+            'body': 'My way is the tik-tok wherever I go'
         }
     ]
     return render_template('index.html', title='Home', user=user, posts=posts)
 
-def f1():
-   a = [ 1, 2, 3, 4]
-   c = sum(a)
-   return str(c)
+@app.route('/articles')
+def articles():
+    return render_template('articles.html', title='Articles')
+
 
 @app.route('/login')
 def login():
     form = LoginForm()
     str = calc()
-    return render_template('login.html', title='Sign In ' + calc(), form=form)
+    return render_template('login.html', title='Sign In ' + str, form=form)
 
 
 def onehot(label):
@@ -41,8 +42,6 @@ def onehot(label):
     if label == 2 : return [0, 0, 1, 0]
     if label == 3 : return [0, 0, 0, 1]
     return [0, 0, 0, 0]
-
-
 
 def calc():
   dataset = [
