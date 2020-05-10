@@ -39,7 +39,11 @@ def index():
             'body': 'My way is the tik-tok wherever I go'
         }
     ]
-    return render_template('index.html', title='Home', user=user, posts=posts)
+    
+    str = calc()
+
+    return render_template('index.html', title='Home', user=user, posts=posts, result = str)
+
 
 @app.route('/articles')
 def articles():
@@ -61,8 +65,8 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')        
         return redirect(url_for('index'))   
-    str = calc()
-    return render_template('login.html', title='Sign In', form=form, result = str)
+    return render_template('login.html', title='Sign In', form=form)
+
 
 @app.route('/logout')
 def logout():
@@ -83,6 +87,19 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+
+@app.route("/matplot-as-image-<int:num_x_points>.png")
+def plot_png(num_x_points=50):
+    """ renders the plot on the fly.
+    """
+    fig = Figure()
+    axis = fig.add_subplot(1, 1, 1)
+    x_points = range(num_x_points)
+    axis.plot(x_points, [random.randint(1, 30) for x in x_points])
+    output = io.BytesIO()
+    FigureCanvasAgg(fig).print_png(output)
+    return Response(output.getvalue(), mimetype="image/png")
 
 
 def onehot(label):
@@ -122,18 +139,3 @@ def calc():
   yref = y[0:N]
   yhat = NN.predict(X[0:N])
   return str(yhat[0:2])
-
-
-@app.route("/matplot-as-image-<int:num_x_points>.png")
-def plot_png(num_x_points=50):
-    """ renders the plot on the fly.
-    """
-    fig = Figure()
-    axis = fig.add_subplot(1, 1, 1)
-    x_points = range(num_x_points)
-    axis.plot(x_points, [random.randint(1, 30) for x in x_points])
-
-    output = io.BytesIO()
-    FigureCanvasAgg(fig).print_png(output)
-    return Response(output.getvalue(), mimetype="image/png")
- 
