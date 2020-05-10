@@ -17,3 +17,4 @@ scipy==1.1.0
 matplotlib
 SQLAlchemy
 alembic
+email-validator
