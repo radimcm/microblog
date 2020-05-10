@@ -3,6 +3,7 @@ doc: https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-w
 test in PYTHON:
 set FLASK_APP=microblog.py
 flask run
+pip freeze
 
 deploy on HEROKU
 heroku apps:create ub30

@@ -1,5 +1,7 @@
 Flask==1.0.2
 Flask-Cors==3.0.4
+Flask-Migrate==2.5.3
+Flask-SQLAlchemy==2.4.1
 Flask-WTF==0.14.3
 Werkzeug==0.15.5
 gunicorn
@@ -12,6 +14,5 @@ Keras-Preprocessing==1.0.5
 scikit-learn==0.22.2.post1
 scipy==1.1.0
 matplotlib
-
-
-
+SQLAlchemy
+alembic
