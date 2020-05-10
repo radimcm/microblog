@@ -1,5 +1,4 @@
 *.pdf
-*.html
 __pycache__/
 **/__pycache__/
 app.db
