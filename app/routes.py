@@ -40,7 +40,7 @@ def index():
         }
     ]
     
-    str = calc()
+    str = calc_example_ml_1()
 
     return render_template('index.html', title='Home', user=user, posts=posts, result = str)
 
@@ -102,14 +102,7 @@ def plot_png(num_x_points=50):
     return Response(output.getvalue(), mimetype="image/png")
 
 
-def onehot(label):
-    if label == 0 : return [1, 0, 0, 0]
-    if label == 1 : return [0, 1, 0, 0]
-    if label == 2 : return [0, 0, 1, 0]
-    if label == 3 : return [0, 0, 0, 1]
-    return [0, 0, 0, 0]
-
-def calc():
+def calc_example_ml_1():
   dataset = [
    [0.25, 0.22, 1.00,  0],
    [0.25, 0.25, 1.00,  0],
@@ -139,3 +132,10 @@ def calc():
   yref = y[0:N]
   yhat = NN.predict(X[0:N])
   return str(yhat[0:2])
+
+def onehot(label):
+    if label == 0 : return [1, 0, 0, 0]
+    if label == 1 : return [0, 1, 0, 0]
+    if label == 2 : return [0, 0, 1, 0]
+    if label == 3 : return [0, 0, 0, 1]
+    return [0, 0, 0, 0]
