@@ -13,6 +13,9 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.backends.backend_svg import FigureCanvasSVG
 from matplotlib.figure import Figure
 
+from flask_login import current_user, login_user
+from app.models import User
+
 
 @app.route('/')
 
@@ -36,7 +39,7 @@ def articles():
     return render_template('articles.html', title='Articles')
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     str = calc()
